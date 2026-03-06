@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Día de la Mujer</title>
+  <meta name="description" content="Animación del Día de la Mujer — Feliz día de la mujer" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Bree+Serif&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== BACKGROUND MUSIC (placed early for fastest playback start) ===== -->
+  <audio id="bg-music" src="assets/song.mp3" preload="auto" autoplay loop></audio>
+
+  <div class="scene">
+
+    <!-- ===== BACKGROUND LEAVES ===== -->
+    <div class="leaf"><img src="assets/background-leaf.svg" alt="" aria-hidden="true" /></div>
+    <div class="leaf"><img src="assets/background-leaf.svg" alt="" aria-hidden="true" /></div>
+    <div class="leaf"><img src="assets/background-leaf.svg" alt="" aria-hidden="true" /></div>
+    <div class="leaf"><img src="assets/background-leaf.svg" alt="" aria-hidden="true" /></div>
+
+    <!-- ===== CORNER FLOWERS — LEFT ===== -->
+    <div class="corner-flowers left">
+      <img src="assets/corner-flowers.svg" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- ===== CORNER FLOWERS — RIGHT (flipped, behind woman) ===== -->
+    <div class="corner-flowers right">
+      <img src="assets/corner-flowers.svg" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- ===== WOMAN ===== -->
+    <div class="woman-wrapper">
+      <img class="woman-closed" src="assets/woman-eyes-closed.png" alt="" aria-hidden="true" />
+      <img class="woman-open" src="assets/woman.png" alt="Woman with flower crown" />
+    </div>
+
+    <!-- ===== LOGO ===== -->
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+    </div>
+
+    <!-- ===== TEXT BLOCK ===== -->
+    <div class="text-block">
+      <span class="text-line italic-line">En cada mujer se esconde una historia de valentía, pasión y lucha.</span>
+      <span class="text-line italic-line">Hoy celebramos su esencia, su legado y su poder.</span>
+      <span class="text-line bold-main">Feliz día</span>
+      <span class="text-line bold-small">de la</span>
+      <span class="text-line bold-largest">mujer</span>
+    </div>
+
+    <!-- ===== FALLING FLOWERS CONTAINER ===== -->
+    <div class="falling-flowers-container"></div>
+
+    <!-- ===== BOTTOM MESSAGE ===== -->
+    <div class="bottom-message">8 de marzo día de la mujer - Primaria</div>
+    <div class="bottom-subtitle">El nivel de Primaria les desea<br>un excelente día en familia.</div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Set volume to 50%
+    const music = document.getElementById('bg-music');
+    music.volume = 0.5;
+    // Fallback if browser blocks autoplay
+    music.play().catch(() => {
+      document.addEventListener('click', () => music.play(), { once: true });
+    });
+  </script>
+</body>
+
+</html>

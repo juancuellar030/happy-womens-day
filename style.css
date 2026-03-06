@@ -1,0 +1,397 @@
+/* ============================================================
+   Women's Day Animation — Stylesheet
+   ============================================================ */
+
+/* ---------- RESET & BASE ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f8e2d7;
+  font-family: 'Satisfy', cursive;
+}
+
+/* ---------- SCENE CONTAINER ---------- */
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- WOMAN ---------- */
+.woman-wrapper {
+  position: absolute;
+  bottom: -1vh;
+  right: 4vw;
+  z-index: 4;
+  width: clamp(280px, 38vw, 550px);
+  opacity: 0;
+  transform: translateY(110%);
+  animation: slideInFromBottom 1s ease-out 300ms forwards;
+}
+
+.woman-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.woman-wrapper .woman-open {
+  z-index: 2;
+  position: relative;
+}
+
+.woman-wrapper .woman-closed {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ---------- CORNER FLOWERS ---------- */
+.corner-flowers {
+  position: absolute;
+  bottom: -150px;
+  z-index: 2;
+  width: clamp(200px, 30vw, 450px);
+  opacity: 0;
+}
+
+.corner-flowers img {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
+.corner-flowers.left {
+  left: -45px;
+  transform: translateY(110%);
+  animation: slideInFlowersLeft 0.9s ease-out 1500ms forwards;
+}
+
+.corner-flowers.right {
+  right: -45px;
+  z-index: 3;
+  /* behind woman (z:4) but above left flowers */
+  transform: translateY(110%) scaleX(-1);
+  animation: slideInFlowersRight 0.9s ease-out 1500ms forwards;
+}
+
+/* ---------- LOGO ---------- */
+.logo {
+  position: absolute;
+  top: 3vh;
+  left: 2vw;
+  z-index: 5;
+  width: clamp(60px, 8vw, 120px);
+  opacity: 0;
+  transform: scale(0);
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1500ms forwards;
+}
+
+.logo img {
+  width: 110%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- BACKGROUND LEAVES ---------- */
+.leaf {
+  position: absolute;
+  z-index: 1;
+  width: clamp(80px, 12vw, 180px);
+  opacity: 0;
+  transform-origin: bottom center;
+}
+
+.leaf img {
+  width: 250%;
+  height: auto;
+  display: block;
+}
+
+.leaf:nth-child(1) {
+  bottom: -12%;
+  left: 15%;
+  animation: rotateInAndSway 1.2s ease-out 2500ms forwards,
+    sway 4s ease-in-out 3700ms infinite;
+}
+
+.leaf:nth-child(2) {
+  bottom: -15%;
+  right: 10%;
+  animation: rotateInAndSway 1.2s ease-out 2700ms forwards,
+    sway 4.5s ease-in-out 3900ms infinite;
+}
+
+.leaf:nth-child(3) {
+  bottom: -10%;
+  left: 35%;
+  animation: rotateInAndSway 1.2s ease-out 2900ms forwards,
+    sway 3.8s ease-in-out 4100ms infinite;
+}
+
+.leaf:nth-child(4) {
+  bottom: -7%;
+  right: -2%;
+  width: clamp(60px, 9vw, 140px);
+  animation: rotateInAndSway 1.2s ease-out 3100ms forwards,
+    sway 5s ease-in-out 4300ms infinite;
+}
+
+/* ---------- TEXT BLOCK ---------- */
+.text-block {
+  position: absolute;
+  top: 13%;
+  left: 18%;
+  z-index: 6;
+  width: clamp(300px, 48vw, 600px);
+  text-align: center;
+}
+
+.text-line {
+  display: block;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.text-line.italic-line {
+  font-family: 'Satisfy', cursive;
+  color: #d946a8;
+  font-size: clamp(20px, 2.8vw, 38px);
+  line-height: 1.2;
+  margin-bottom: 0.2em;
+}
+
+.text-line.bold-main {
+  font-family: 'Bree Serif', serif;
+  color: #d6246e;
+  font-size: clamp(38px, 5.5vw, 76px);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-top: 0.1em;
+}
+
+.text-line.bold-small {
+  font-family: 'Bree Serif', serif;
+  color: #d6246e;
+  font-size: clamp(20px, 2.8vw, 36px);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text-line.bold-largest {
+  font-family: 'Bree Serif', serif;
+  color: #d6246e;
+  font-size: clamp(48px, 7.5vw, 100px);
+  line-height: 1.0;
+  font-weight: 400;
+}
+
+.text-block .letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letterFadeIn 0.15s ease-in forwards;
+}
+
+/* Preserve whitespace for letter spans */
+.text-block .letter-space {
+  display: inline-block;
+  width: 0.3em;
+  opacity: 0;
+  animation: letterFadeIn 0.05s ease-in forwards;
+}
+
+/* ---------- BOTTOM MESSAGE ---------- */
+.bottom-message {
+  position: absolute;
+  bottom: 16%;
+  left: 25%;
+  transform: translateX(-50%);
+  z-index: 8;
+  font-family: 'Bree Serif', serif;
+  color: #d6246e;
+  font-size: clamp(14px, 1.8vw, 24px);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  animation: letterFadeIn 0.8s ease-in 5500ms forwards;
+}
+
+.bottom-subtitle {
+  position: absolute;
+  bottom: 4%;
+  left: 25%;
+  transform: translateX(-50%);
+  z-index: 8;
+  font-family: 'Satisfy', cursive;
+  color: #d946a8;
+  font-size: clamp(16px, 2vw, 28px);
+  text-align: center;
+  opacity: 0;
+  animation: letterFadeIn 0.8s ease-in 6000ms forwards;
+}
+
+/* ---------- FALLING FLOWERS ---------- */
+.falling-flowers-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.falling-flower {
+  position: absolute;
+  top: -80px;
+  pointer-events: none;
+}
+
+.falling-flower img {
+  width: 120%;
+  height: 120%;
+  display: block;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* Woman slides up from bottom */
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Corner flowers — left */
+@keyframes slideInFlowersLeft {
+  0% {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Corner flowers — right (keep scaleX flip) */
+@keyframes slideInFlowersRight {
+  0% {
+    opacity: 0;
+    transform: translateY(110%) scaleX(-1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleX(-1);
+  }
+}
+
+/* Logo pop in */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Leaf rotates 90° into position then stops */
+@keyframes rotateInAndSway {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    opacity: 0.7;
+    transform: rotate(0deg);
+  }
+}
+
+/* Continuous gentle swaying (wind) */
+@keyframes sway {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(8deg);
+  }
+
+  75% {
+    transform: rotate(-8deg);
+  }
+}
+
+/* Letter fade in */
+@keyframes letterFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Falling flowers — downward movement */
+@keyframes fallDown {
+  0% {
+    transform: translateY(-80px);
+  }
+
+  100% {
+    transform: translateY(calc(100vh + 80px));
+  }
+}
+
+/* Falling flowers — spin while falling */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
